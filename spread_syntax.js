@@ -6,7 +6,7 @@ console.log(lyrics)
 
 
 // 함수와의 사용(rest parameters)
-
+// 정해지지 않은 수 의 매개변수를 배열로 받을 수 있음
 const restOpr = function (arg1, arg2, ...restArgs) {
   return [arg1, arg2, restArgs]
 }
