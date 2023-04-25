@@ -8,17 +8,16 @@
 </head>
 <body>
   <script>
-    let promise = new Promise(function(resolve, reject) {
-      console.log('Hi')
-    
+    console.log('Hi')
+    new Promise(function(resolve, reject) {
+
       setTimeout(function () {
-        console.log('SSAFY')
+        resolve('SSAFY')
       }, 3000)
       
-      resolve('Bye')
-    })
-    promise.then((res) => {
-    console.log(res)
+    }).then( (res) => {
+      console.log(res)
+      console.log('Bye')
     })
   </script>
 </body>
