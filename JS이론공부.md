@@ -83,3 +83,56 @@ if, else if, else
 ######
 반복문
 while, for, for in(속성 이름을 통해 반복. 객체의 속성을 순회), for of(속성 값을 통해 반복. 반복 가능한 객체를 순회. array, set, string 등)
+
+######
+Event
+HTML요소에서 발생하는 모든 상황을 의미. 클릭하면 무언가 결과를 받는 것 등
+
+addEventListener()메서드를 통해 이벤트 처리기를 다양한 html요소에 부착하여 처리
+Event handler(이벤트 처리기) 이벤트가 발생했을 때 호출되는 함수. 이벤트 객체를 매개로 전달받음
+EventTarget.addEventListener(type,handler function)
+  대상                    특정 이벤트     할 일
+
+addEventListener 지정한 이벤트가 대상에 전달될 때마다 호출할 함수 설정
+type 반응할 이벤트 유형을 나타냄. input, click, submit...  
+handler function 지정된 타입의 이벤트 수신할 객체. 콜백함수여야 하고 이벤트 객체를 매개변수로 받음
+
+addEventListener ~하면 ~한다. 특정 이벤트가 발생하면 할 일을 등록한다.
+
+######
+이벤트 전파: DOM요소에서 발생한 이벤트가 상위노드에서 하위노드 혹은 그 반대로 전파되는 현상
+addEventListener 메서드를 사용해서 전파방식 제어 가능 
+event.preventDefault() 현재 이벤트의 기본 동작을 중단. a태그(클릭시 이동)나 form태그(폼 데이터 전송) 등 기본 동작 작동 안하도록
+h1.addEventListener('copy', function(event) {
+  event.preventDefault()
+})
+
+btn.addEventListener('click', function (event) {
+    event.preventDefault()
+})
+
+######
+동기와 비동기
+
+주문 후 커피 나올 때까지 기다림(동기식)
+주문 순서 상관없이 나오는 대로 가져감(비동기식)
+
+1. 동기
+모든 일을 순서대로 하나씩 처리. 이전 작업이 끝나면 다음 작업을 시작. 파이썬 코드 등
+
+2. 비동기 
+결과를 기다리지 않고 다음 작업 처리(병렬적 수행). 시간이 오래 걸리는 작업은 요청 보내고 응답 빨리 오는 작업부터 처리
+
+사용자 경험에 긍정적 효과를 보기 위해 비동기 사용. 동기식 처리로 하면 이미지 등 오래 걸리는 작업하면 로딩 오래 걸려서 멈춘것처럼 느낌.
+
+######
+JS는 single thread언어라서 동시에 여러 작업 처리 못함. 비동기 처리 도와주는 환경 필요. 
+비동기와 관련된 작업은 브라우저나 노드 환경에서 처리.
+1. Call Stack
+2. Web API
+3. Task Queue
+4. Event Loop
+
+비동기 처리의 동작방식
+1. 모든 작업은 Call Stack으로 들어간 후 처리
+2. 오래 걸리는 작업이 Call Stack으로 들어오면 Web API로 보내 별도로 처리
