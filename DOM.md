@@ -81,3 +81,7 @@ addEventListener('click', function () {
       console.log(response.data)
     })
 })
+
+이벤트 전파 취소
+현재 이벤트의 기본 동작을 중단. a태그의 클릭시 특정 주소로 이동, form태그의 폼 데이터 전송 등을 막음
+event.preventDefault() 
