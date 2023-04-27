@@ -26,7 +26,7 @@ console.log(document.querySelectorAll('body>ul>li'))
 작성한 tagName의 HTML요소를 생성하여 반환
 const title = document.createElement('h1')
 
-2. (입력) Node.innerText
+2. (입력) HTMLElement.innerText
 텍스트 추가. 사람이 읽을 수 있는 요소만 남기고 스타일링 적용된 모습으로 표현
 title.innerText = 'DOM 조작'
 
@@ -74,6 +74,7 @@ h1.classList.toggle('blue')
 console.log(h1.classList)
 
 ######
+이벤트 추가
 addEventListener('click', function () {
   axios.get(URL)
     .then(() => {
