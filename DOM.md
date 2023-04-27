@@ -72,3 +72,11 @@ console.log(h1.classList)
 클래스가 존재한다면 제거하고 false를 반환
 h1.classList.toggle('blue')
 console.log(h1.classList)
+
+######
+addEventListener('click', function () {
+  axios.get(URL)
+    .then(() => {
+      console.log(response.data)
+    })
+})

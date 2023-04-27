@@ -65,6 +65,52 @@ function add(num1, num2) {
 const sub = function (num1, num2) {
   return num1 - num2
 }
+######
+객체 관련 문법
+
+1. 속성명 축약: 객체를 정의할 때 key와 할당하는 변수 이름이 같으면 축약 가능
+const bookShop = {
+  books: books, 
+  magazines: magazines,
+}  
+
+const bookShop = {
+  books, 
+  magazines,
+}  
+
+2. 메서드명 축약: 메서드 선언 시 function 키워드 생략가능
+var obj = {
+  greeting: function () {
+    console.log('Hi!')
+  }
+}
+obj.greeting()
+
+var obj = {
+  greeting() {
+    console.log('Hi!')
+  }
+}
+obj.greeting()
+
+3. 계산된 속성: 객체를 정의할 때 key의 이름을 표현식을 이용하여 동적으로 생성가능
+4. 구조 분해 할당: 배열 또는 객체를 분해하여 속성을 변수에 쉽게 할당할 수 있음
+const name = userInformation
+const {name} = userInformation
+
+5. Spread syntax: 배열과 마찬가지로 전개구문을 사용해 객체 내부에서 전개 가능
+얕은 복사에 활용 가능
+const obj = {b:2, c:3, d:4}
+const newObj = {a:1, ...obj, e: 5}
+
+######
+JSON
+키-밸류 형태로 이루어진 자료 표기법. 오브젝트는 그 자체로 타입이고 제이슨은 형식이 있는 문자열. 제이슨을 오브젝트로 활용하기 위해서는 변환 작업이 필요
+
+const objToJson = JSON.stringify(jsObject)  // Object -> JSON
+
+const jsonToObj = JSON.parse(objToJson)  // JSON -> Object
 
 ######
 연산자
@@ -136,3 +182,26 @@ JS는 single thread언어라서 동시에 여러 작업 처리 못함. 비동기
 비동기 처리의 동작방식
 1. 모든 작업은 Call Stack으로 들어간 후 처리
 2. 오래 걸리는 작업이 Call Stack으로 들어오면 Web API로 보내 별도로 처리
+3. Web API에서 처리가 끝난 작업들은 곧바로 Call Stack으로 들어가지 못하고 Task Queue에 순서대로 들어간다
+4. Event Loop가 Call Stack이 비어 있는 것을 계속 체크하고 Call Stack이 빈다면 Task Queue에서 가장 오래된 작업을 Call Stack으로 보낸다
+
+Call Stack: 요청이 들어올때마다 순차적으로 처리. 기본적인 JS의 작업 처리
+Web API: JS엔진이 아닌 브라우저에서 제공하는 runtime 환경. 시간이 소요되는 작업을 처리
+Task Queue: 비동기 처리된 콜백함수가 대기하는 큐. 웹에이피아이에서 받음
+Event Loop: 콜스택과 태스크 큐 지속적으로 모니터링하다가 콜스택 비면 태스크큐에서 오래 대기 중인 작업을 콜스택으로 push
+
+######
+Axios 
+자바스크립트의 HTTP 웹 통신을 위한 라이브러리. 비동기 통신기능 제공
+axios.get('URL')
+  .then(성공하면 수행할 콜백함수)
+  .catch(실패하면 수행할 콜백함수)
+
+######
+비동기 처리는 Web API로 들어오는 순서대로가 아니라 작업이 완료되는 순서에 따라
+처리. 그래서 코드 실행순서 명확하게 하기 위해 콜백함수를 사용함. 코드의 가독성과 유지보수 위해 프로미스라는 객체를 사용. 비동기 작업의 완료 또는 실패를 나타내는 객체
+
+.then(callback)
+.catch(callback)
+
+둘 다 항상 promise 객체를 반환. 액시오스로 처리한 비동기 로직이 항상 프로미스 객체를 반환. chaining
